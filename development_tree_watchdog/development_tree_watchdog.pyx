@@ -49,8 +49,8 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
 
         subprocess.run(["git", "config", "--global", "safe.directory", repo_path],)
         subprocess.run(["git", "config", "--global", "--add", "safe.directory", repo_path],)
-        subprocess.run(["git", "config", "--globa", "user.email", "InnovAnon-Inc@gmx.com"],)
-        subprocess.run(["git", "config", "--globa", "user.name", "lmaddox"],)
+        subprocess.run(["git", "config", "--global", "user.email", "InnovAnon-Inc@gmx.com"],)
+        subprocess.run(["git", "config", "--global", "user.name", "lmaddox"],)
 
         # 1. Git Commit & Push
         # We assume the container has the correct SSH keys/git config
