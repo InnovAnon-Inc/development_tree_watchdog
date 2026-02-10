@@ -16,7 +16,20 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
         super().__init__(ignore_patterns=[f"*/.git/*", "*/__pycache__/*"], ignore_directories=True)
         self.last_triggered = {}
 
+    def is_ignored_by_git(self, path):
+        """Returns True if the specific file path is ignored by the repo's .gitignore."""
+        repo_root = self.find_repo_root(path)
+        if not repo_root:
+            return False
+        
+        # git check-ignore returns 0 if the file is ignored, 1 if it is not.
+        cmd = ["git", "check-ignore", "-q", path]
+        result = subprocess.run(cmd, cwd=repo_root, env={"HOME": "/tmp"})
+        return result.returncode == 0
+
     def on_modified(self, event):
+        if self.is_ignored_by_git(event.src_path):
+            return
         repo_root = self.find_repo_root(event.src_path)
         if repo_root:
             now = time.time()
