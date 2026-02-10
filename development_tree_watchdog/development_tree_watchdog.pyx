@@ -36,6 +36,17 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
         return None
 
     def process_update(self, repo_path):
+        env = os.environ.copy()
+        env["HOME"] = "/tmp"
+
+        # Check if there are real changes (excluding ignored files)
+        status = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=repo_path, capture_output=True, text=True, env=env
+        ).stdout
+        if not status:
+            return
+
         subprocess.run(["git", "config", "--global", "safe.directory", repo_path],)
         subprocess.run(["git", "config", "--global", "--add", "safe.directory", repo_path],)
         subprocess.run(["git", "config", "--globa", "user.email", "InnovAnon-Inc@gmx.com"],)
