@@ -1,6 +1,8 @@
 # development_tree_watchdog
 # handles -march= / -mtune= architecture-specific distribution
 
+# TODO create git repo if not exists (local & upstream) 
+
 import time
 import os
 import sys
