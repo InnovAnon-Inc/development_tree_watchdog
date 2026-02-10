@@ -1,3 +1,6 @@
+# development_tree_watchdog
+# handles -march= / -mtune= architecture-specific distribution
+
 import time
 import os
 import sys
