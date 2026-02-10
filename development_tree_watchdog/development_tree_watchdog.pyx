@@ -36,6 +36,8 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
         return None
 
     def process_update(self, repo_path):
+        subprocess.run(["git", "config", "--global", "safe.directory", "*"], cwd=repo_path) # do this every time or just once?
+
         # 1. Git Commit & Push
         # We assume the container has the correct SSH keys/git config
         subprocess.run(["git", "add", "."], cwd=repo_path)

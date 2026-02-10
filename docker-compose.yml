@@ -13,8 +13,9 @@ services:
 #      - PROFILE_DIR=/var/lib/chimera/profiles
       - CLONER_URL=http://python_project_cloner.innovanon.com:9323/clone
     volumes:
-      - ~/src/py/latest:/mnt/shared:ro
+      - ~/src/py/latest:/mnt/host_src:ro
       - ~/.ssh:/root/.ssh:ro
+    user: "${UID}:${GID}"
 #      - development_tree_watchdog-repos:/mnt/shared
 #    depends_on:
 #      - ssl-companion
