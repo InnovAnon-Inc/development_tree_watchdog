@@ -1,0 +1,10 @@
+build/
+version.py
+__pycache__
+*/__pycache__/
+*.cpp
+*/*.cpp
+*.so
+*/*.so
+*.egg-info/
+.eggs/

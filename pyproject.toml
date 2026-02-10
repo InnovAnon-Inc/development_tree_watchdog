@@ -1,0 +1,40 @@
+[build-system]
+requires = [
+    "Cython",
+    "setuptools>=61.0.0",
+    "setuptools-scm>=8.0",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "development_tree_watchdog"
+dynamic = [
+    "dependencies",
+    "version",
+]
+description = "Auto-managed via broker swarm."
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "InnovAnon, Inc." },
+]
+
+[project.license]
+text = "MIT"
+
+[tool.setuptools.packages.find]
+where = [
+    ".",
+]
+exclude = [
+    "build*",
+    "dist*",
+    "tests*",
+    "logs*",
+    "__pycache__*",
+    ".*",
+]
+
+[tool.setuptools_scm]
+write_to = "version.py"

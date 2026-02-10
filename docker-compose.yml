@@ -1,0 +1,24 @@
+services:
+
+  development_tree_watchdog: # handles -march= / -mtune= architecture-specific distribution
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: development_tree_watchdog
+    restart: unless-stopped
+    hostname: development_tree_watchdog.innovanon.com
+    environment:
+#      - VIRTUAL_HOST=development_tree_watchdog.innovanon.com
+#      - VIRTUAL_PORT=9324
+#      - PROFILE_DIR=/var/lib/chimera/profiles
+      - CLONER_URL=http://python_project_cloner.innovanon.com:9323/clone
+    volumes:
+      - ~/src/py/latest:/mnt/shared:ro
+      - ~/.ssh:/root/.ssh:ro
+#      - development_tree_watchdog-repos:/mnt/shared
+#    depends_on:
+#      - ssl-companion
+
+#volumes:
+#  development_tree_watchdog-repos
+
