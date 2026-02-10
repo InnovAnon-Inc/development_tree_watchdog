@@ -82,7 +82,8 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
             ["git", "config", "--get", "remote.origin.url"], 
             cwd=repo_path, text=True
         ).strip()
-        
+
+        # FIXME development_tree_watchdog  | httpx.ConnectError: [Errno 111] Connection refused
         with httpx.Client() as client:
             client.post(CLONER_URL, json={"repo_url": remote_url})
 
