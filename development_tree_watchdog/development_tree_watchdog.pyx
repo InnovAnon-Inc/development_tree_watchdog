@@ -8,7 +8,7 @@ import subprocess
 
 # Config
 WATCH_PATH = "/mnt/host_src"
-CLONER_URL = os.getenv("CLONER_URL", "http://python_project_cloner:9323/clone")
+CLONER_URL = os.getenv("CLONER_URL", "http://python_project_cloner.innovanon.com:9323/clone")
 DEBOUNCE_SECONDS = 5
 
 class RepoUpdateHandler(PatternMatchingEventHandler):

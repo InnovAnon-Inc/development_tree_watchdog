@@ -8,3 +8,9 @@ __pycache__
 */*.so
 *.egg-info/
 .eggs/
+*~
+.*.swp
+.*.swx
+*.o
+*/*.o
+.env
