@@ -84,8 +84,11 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
         ).strip()
 
         # FIXME development_tree_watchdog  | httpx.ConnectError: [Errno 111] Connection refused
-        with httpx.Client(timeout=httpx.Timeout(9000.0, read=None)) as client:
-            client.post(CLONER_URL, json={"repo_url": remote_url})
+        try:
+            with httpx.Client(timeout=httpx.Timeout(9000.0, read=None)) as client:
+                client.post(CLONER_URL, json={"repo_url": remote_url})
+        except httpx.ConnectError as e:
+            logging.error(f'error: {e}')
 
 def main():
     watch_path = os.getenv("WATCH_PATH", "/mnt/host_src")
