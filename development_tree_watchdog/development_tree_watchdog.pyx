@@ -1,8 +1,9 @@
 # development_tree_watchdog
 # handles -march= / -mtune= architecture-specific distribution
 
-# TODO create git repo if not exists (local & upstream)    
+# TODO create git repo if not exists (local & upstream)     
 
+import logging
 import time
 import os
 import sys
@@ -83,7 +84,6 @@ class RepoUpdateHandler(PatternMatchingEventHandler):
             cwd=repo_path, text=True
         ).strip()
 
-        # FIXME development_tree_watchdog  | httpx.ConnectError: [Errno 111] Connection refused
         try:
             with httpx.Client(timeout=httpx.Timeout(9000.0, read=None)) as client:
                 client.post(CLONER_URL, json={"repo_url": remote_url})
